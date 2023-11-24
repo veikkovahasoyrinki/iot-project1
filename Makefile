@@ -2,6 +2,36 @@ APPLICATION = IOT2023Project1
 
 BOARD ?= iotlab-m3
 
+USEMODULE += netdev_default
+LWIP_IPV6 ?= 0
+
+ifeq (,$(filter 1, $(LWIP_IPV4) $(LWIP_IPV6)))
+  USEMODULE += auto_init_gnrc_netif
+  # Specify the mandatory networking modules
+  USEMODULE += gnrc_ipv6_default
+  # Additional networking modules that can be dropped if not needed
+  USEMODULE += gnrc_icmpv6_echo
+else
+  USEMODULE += lwip_netdev
+
+  ifeq (1,$(LWIP_IPV4))
+    USEMODULE += ipv4_addr
+
+    USEMODULE += lwip_arp
+    USEMODULE += lwip_ipv4
+    USEMODULE += lwip_dhcp_auto
+    CFLAGS += -DETHARP_SUPPORT_STATIC_ENTRIES=1
+  endif
+
+  ifeq (1,$(LWIP_IPV6))
+    USEMODULE += ipv6_addr
+
+    USEMODULE += lwip_ipv6
+    USEMODULE += lwip_ipv6_autoconfig
+  endif
+endif
+
+USEMODULE += gcoap
 USEMODULE += ipv6_addr
 USEMODULE += shell
 USEMODULE += shell_commands
@@ -22,6 +52,27 @@ USEMODULE += ps
 USEMODULE += lsm303dlhc
 
 RIOTBASE ?= $(CURDIR)/../RIOT
-
 include $(RIOTBASE)/Makefile.include
+
+
+ifndef CONFIG_KCONFIG_MODULE_GCOAP
+## Uncomment to redefine port, for example use 61616 for RFC 6282 UDP compression.
+#GCOAP_PORT = 5683
+#CFLAGS += -DCONFIG_GCOAP_PORT=$(GCOAP_PORT)
+
+## Uncomment to redefine request token length, max 8.
+#GCOAP_TOKENLEN = 2
+#CFLAGS += -DCONFIG_GCOAP_TOKENLEN=$(GCOAP_TOKENLEN)
+
+# Increase from default for confirmable block2 follow-on requests
+GCOAP_RESEND_BUFS_MAX ?= 2
+CFLAGS += -DCONFIG_GCOAP_RESEND_BUFS_MAX=$(GCOAP_RESEND_BUFS_MAX)
+endif
+
+
+
+
+
+
+
 

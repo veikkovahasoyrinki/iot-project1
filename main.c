@@ -16,6 +16,7 @@
 /* Add lsm303dlhc related include here */
 #include "lsm303dlhc.h"
 #include "lsm303dlhc_params.h"
+#include "od.h"
 
 /* Declare the lsm303dlhc device variable here */
 static lsm303dlhc_t lsm303dlhc;
@@ -26,48 +27,61 @@ static mutex_t lsm_lock = MUTEX_INIT_LOCKED;
 /* stack memory allocated for the lsm303dlhc thread */
 static char lsm303dlhc_stack[THREAD_STACKSIZE_MAIN];
 
+/*
 void send_accelerometer_data(lsm303dlhc_3d_data_t acc_value) {
-    char address[IPV6_ADDR_MAX_STR_LEN] = "2600:1900:4150:a91b::";
-    uint16_t port = 8683;
-    ipv6_addr_t addr; 
-    uint8_t payload[128]; // Adjust payload buffer size as needed
+    char address[IPV6_ADDR_MAX_STR_LEN] = "[2600:1900:4150:a91b::]:8683";
+    char path [7]                       = "/whoami";
+    //ipv6_addr_t addr; 
+    uint8_t payload[256]; // Adjust payload buffer size as needed
     uint8_t buf[CONFIG_GCOAP_PDU_BUF_SIZE];
-    sock_udp_ep_t remote = SOCK_IPV6_EP_ANY;
+    sock_udp_ep_t remote;
     coap_pkt_t pdu;
     size_t payload_len = snprintf((char *)payload, sizeof(payload),
-                                  "x: %i y: %i z: %i\n",
+                                  "Acclr x: %i y: %i z: %i\n",
                                   acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
 
-    gcoap_req_init(&pdu, &buf[0], CONFIG_GCOAP_PDU_BUF_SIZE, 1, "/whoami");
+    gcoap_req_init(&pdu, &buf[0], CONFIG_GCOAP_PDU_BUF_SIZE, 1, path);
     // Copy payload into CoAP packet
     coap_hdr_set_type(pdu.hdr, 1);
     memcpy(pdu.payload, payload, payload_len);
     pdu.payload_len = payload_len;
-
+    //gcoap_request(&pdu, &buf[0], CONFIG_GCOAP_PDU_BUF_SIZE, 1, path);
     // Finish the CoAP request
     coap_opt_finish(&pdu, COAP_OPT_FINISH_NONE);
 
     remote.family = AF_INET6;
-    remote.port   = port;
     //remote.addr.ipv6   = addr;
-    ipv6_addr_from_str(&addr, address);
-    memcpy(&remote.addr.ipv6[0], &addr.u8[0], sizeof(addr.u8));
-    //sock_udp_name2ep(&remote, address);
-    //new_remote = &remote;
+    //ipv6_addr_from_str(&addr, address);
+    //memcpy(&remote.addr.ipv6[0], &addr.u8[0], sizeof(addr.u8));
+
+    sock_udp_name2ep(&remote, address);
     // Send CoAP request        
     printf("gcoap_cli: sending msg ID %u, %u bytes\n", coap_get_id(&pdu),
                (unsigned) payload_len);
-    printf("Port: %x",*remote.addr.ipv6);
-    gcoap_req_send(&buf[0],payload_len,&remote,NULL, NULL);
-
+    if (gcoap_req_send(&buf[0], payload_len, &remote,NULL, NULL) == 0) {
+        printf("Failed to send CoAP request!\n");
+        return;
+    }
     printf("CoAP POST request sent successfully!\n");
 
 }
 
+
+*/
+
 static void *lsm303dlhc_thread(void *arg)
 {
     (void)arg;
-    //char addr[24]     = "[2600:1900:4150:a91b::]";
+    char server_address[IPV6_ADDR_MAX_STR_LEN] = "[2600:1900:4150:a91b::]:8683";
+
+    char sensor_data[128];
+    sock_udp_ep_t remote;
+    remote.family = AF_INET6;
+
+    if (sock_udp_str2ep(&remote, server_address) != 0) {
+        printf("Invalid address or port\n");
+        return 0;
+    }
     while (1) {
         /* Acquire the mutex here */
         mutex_lock(&lsm_lock);
@@ -85,11 +99,19 @@ static void *lsm303dlhc_thread(void *arg)
         /* Release the mutex here */
         mutex_unlock(&lsm_lock);
 
+        snprintf(sensor_data, sizeof(sensor_data), "Accelerometer x: %i y: %i z: %i\n",
+             acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
 
-        send_accelerometer_data(acc_value);
+        ssize_t bytes_sent = sock_udp_send(NULL, sensor_data, strlen(sensor_data), &remote);
+        if (bytes_sent < 0) {
+            printf("Failed to send data\n");
+        
+        } else {
+            printf("Sensor data sent to the server\n");
+        }
 
-
-        ztimer_sleep(ZTIMER_MSEC, 1000);
+        //5 seconds of sleep
+        ztimer_sleep(ZTIMER_MSEC, 5000);
     }
 
     return 0;
