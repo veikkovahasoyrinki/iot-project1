@@ -12,15 +12,21 @@ server_socket.bind((SERVER_ADDR, SERVER_PORT))
 
 print(f"UDP server listening on [{SERVER_ADDR}]:{SERVER_PORT}")
 
+ACK_RESPONSE = "Test ok"
+responseBytes = str.encode(ACK_RESPONSE)
 #Listening
 while True:
     message, address = server_socket.recvfrom(1024)  
     message = message.decode('utf-8') 
-    print(f"Received message from [{address[0]}]:{adbress[1]}: {message}: \n")
+    print(f"Received message from [{address[0]}]:{address[1]}: {message}: \n")
     print(message)
-    with open(INPUT_DATA, 'a') as file:
-        file.write(message + '\n')
-        file.write('-' * 20 + '\n')
+    if "Testing" not in message:
+        with open(INPUT_DATA, 'a') as file:
+            file.write(message + '\n')
+            file.write('-' * 20 + '\n')
+    else:
+        #Send a response
+        server_socket.sendto(responseBytes, address)
 
 
 server_socket.close()
