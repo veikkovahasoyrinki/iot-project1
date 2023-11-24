@@ -1,6 +1,6 @@
 # Iot mini project 1
 
-In this project we wrote firmware for FIT/Iotlab-m3 board which collects lsm303 data and sends it towards UDP-server which is hosted on Google Cloud Virtual Machine.
+In this project we wrote firmware for FIT/Iotlab-m3 board in RIOT OS which collects lsm303 acceleration data and sends it towards UDP-server which is hosted on Google Cloud Virtual Machine.
 
 Juhana Moberg Y58151762, Veikko Vähäsöyrinki Y58172127, Eemil Kulmala 2308644 
 
