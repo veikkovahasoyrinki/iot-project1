@@ -43,7 +43,8 @@ You can test connectivity to the cloud server by running test_server_connection.
 ## RIOT and FIT/Iotlab
 
 
-Clone this repo and run: 
+Clone this repo and edit main.c to match your server's address and port (line 75) then run: 
+
 ```
 git clone https://github.com/veikkovahasoyrinki/iot-project1/
 cd iot-project1
