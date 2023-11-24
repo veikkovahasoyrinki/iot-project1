@@ -4,13 +4,14 @@ IOT Course mini project 1 (521043S-3004)
 
 Juhana Moberg Y58151762, Veikko Vähäsöyrinki Y58172127, Eemil Kulmala 2308644 
 
+Video of working system: 
 
 
 ## CLOUD: 
 
 Run a python UDP server with Virtual Machine (Google)  
 
-VM done with Google Compute: https://cloud.google.com/compute?hl=en 
+VM done with Google Compute: [Google VM](https://cloud.google.com/compute?hl=en) 
 
 Create VM Instance with default values and change stack type to Dual-stack(ipv4-ipv6) and add firewall rules: 
 
@@ -22,9 +23,9 @@ Save inet6 address from second interface, that is needed in next phase. Select a
 
 Make firewall rule to open egress and igress traffic for that ip address and port.
 
-Ipv6 setting: https://cloud.google.com/compute/docs/ip-addresses/configure-ipv6-address 
+[Ipv6 setting](https://cloud.google.com/compute/docs/ip-addresses/configure-ipv6-address) 
 
-Firewall rules: https://cloud.google.com/firewall/docs/firewalls 
+[Google Firewall instructions](https://cloud.google.com/firewall/docs/firewalls)
 
 
 UDP-server with python: 
@@ -54,7 +55,7 @@ make all BOARD=iotlab-m3 ETHOS_BAUDRATE=500000
 ```
 
 In FIT/Iotlab:
-Set up SSH keys in FIT/Iotlab: https://iot-lab.github.io/docs/getting-started/ssh-access/
+Set up SSH keys in [FIT/Iotlab](https://iot-lab.github.io/docs/getting-started/ssh-access/)
 
 Create a new experiment with two nodes with M3 components with a chosen site, for example Grenoble. 
 
@@ -95,3 +96,5 @@ Start sending, receiving and collecting data with:
 ```
 lsm start
 ```
+
+With udp_server.py code collected gyro data is written to data.csv file with timestamp.
