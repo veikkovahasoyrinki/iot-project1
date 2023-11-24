@@ -38,7 +38,10 @@ nano udp-server.py
 python3 udp-server.py
 ```
 
+You can test connectivity to the cloud server by running test_server_connection.py with python. Change your address and port to that file.
+
 ## RIOT and FIT/Iotlab
+
 
 Clone this repo and run: 
 ```
@@ -51,13 +54,43 @@ make all BOARD=iotlab-m3 ETHOS_BAUDRATE=500000
 
 In FIT/Iotlab:
 Set up SSH keys in FIT/Iotlab: https://iot-lab.github.io/docs/getting-started/ssh-access/
-Create a new experiment with two nodes with M3 components with a chosen site, for example Grenoble.
-Open 2 SSH terminals with: 
+
+Create a new experiment with two nodes with M3 components with a chosen site, for example Grenoble. 
+
+Choose one of the nodes to be the border router and flash the gnrc_border_router.elf file to it. Flash main firmware to the other node. (.elf file)
+
+Open two terminals and connect them via SSH to FIT/Iotlab. 
 ```
 ssh <username>@<site>.iot-lab.info
 ```
 
-In the other terminal:
+In the other SSH terminal:
+
+```
+ip addr show | grep tap
 ```
 
+Take tap that is free.
+On below command fill your border routers id, free tap and ipv6 prefix of your site. (Grenoble ipv6 prefix : 2001:660:5307:3100)
+
+```
+sudo ethos_uhcpd.py m3-<id> tap<num> <ipv6_prefix>::/64
+```
+
+Now in the other terminal run: (id can be found from board name in Iotlab experiment)
+```
+nc m3-<id> 20000
+```
+
+Now run ifconfig and you should see that you have inet6 address with global scope.
+You can test connection by pingin a pulbic Google server:
+
+```
+ping 2a00:1450:4007:80f::2003
+```
+
+Start sending, receiving and collecting data with: 
+
+```
+lsm start
 ```
