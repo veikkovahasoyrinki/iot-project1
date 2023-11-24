@@ -97,4 +97,4 @@ Start sending, receiving and collecting data with:
 lsm start
 ```
 
-With udp_server.py code collected gyro data is written to data.csv file with timestamp.
+With udp_server.py code collected data is written to data.csv file with timestamp.
