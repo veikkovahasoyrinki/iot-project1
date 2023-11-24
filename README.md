@@ -4,7 +4,7 @@ IOT Course mini project 1 (521043S-3004)
 
 Juhana Moberg Y58151762, Veikko Vähäsöyrinki Y58172127, Eemil Kulmala 2308644 
 
-Video of working system: 
+[Video of working system](https://youtube.com/shorts/glUFfosewVg?feature=share)
 
 
 ## CLOUD: 
@@ -30,7 +30,7 @@ Make firewall rule to open egress and igress traffic for that ip address and por
 
 UDP-server with python: 
 
-We followed example: https://pythontic.com/modules/socket/udp-client-server-example 
+We followed example: [UDP server example](https://pythontic.com/modules/socket/udp-client-server-example) 
 
 Copy udp server python code to file and run (you need to add your own ip and port): 
 ```
