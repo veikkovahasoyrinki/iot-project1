@@ -74,7 +74,8 @@ Wait for the created instance to load.
 
 Open a ssh terminal from cloud console to the VM instance and run: 
 ``` ip a ```
-![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/8d3a4404-e79f-4586-bf65-6e15da82959d)
+![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/9b8cbbf1-bcbc-4647-a451-f9c80a8eea75)
+
 
 Save inet6 address from second interface, that is needed in next phase. Select a port f.ex 8683 (we used that) 
 
