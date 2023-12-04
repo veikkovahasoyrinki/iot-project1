@@ -78,11 +78,6 @@ Open a ssh terminal from cloud console to the VM instance and run:
 
 Save inet6 address from second interface, that is needed in next phase. Select a port f.ex 8683 (we used that) 
 
-Make firewall rule to open egress and igress traffic for that ip address and port.
-
-[Ipv6 setting](https://cloud.google.com/compute/docs/ip-addresses/configure-ipv6-address) 
-
-[Google Firewall instructions](https://cloud.google.com/firewall/docs/firewalls)
 
 
 UDP-server with python: 
