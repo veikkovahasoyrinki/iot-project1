@@ -46,6 +46,8 @@ Source filter: IPv6 ranges
 
 Protocols and ports: Allow all. Leave the rest as default.
 
+![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/242b02ea-1ed2-4b78-8286-87aa8f184dc6)
+
 
 
 
