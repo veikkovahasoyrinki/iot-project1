@@ -137,6 +137,9 @@ Now in the other terminal run: (id can be found from board name in Iotlab experi
 ```
 nc m3-<id> 20000
 ```
+ID:
+![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/8765541b-a2a2-4007-9fe8-c6f682b641ed)
+
 
 Now run ifconfig and you should see that you have inet6 address with global scope.
 You can test connection by pingin a pulbic Google server:
