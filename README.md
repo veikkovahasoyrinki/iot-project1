@@ -48,6 +48,7 @@ Protocols and ports: Allow all. Leave the rest as default.
 
 ![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/242b02ea-1ed2-4b78-8286-87aa8f184dc6)
 
+Create rules for ingress and engress traffic.
 
 Now your VPC network details -> Firewalls should look like something like this:
 ![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/087b3532-d86b-4e10-a5d0-3e3fe399dfbb)
