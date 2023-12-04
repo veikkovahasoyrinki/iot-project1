@@ -79,9 +79,6 @@ Open a ssh terminal from cloud console to the VM instance and run:
 Save inet6 address from second interface, that is needed in next phase. Select a port f.ex 8683 (we used that) 
 
 
-
-UDP-server with python: 
-
 We followed example: [UDP server example](https://pythontic.com/modules/socket/udp-client-server-example) 
 
 Copy udp server python code to file and run (you need to add your own ip and port): 
