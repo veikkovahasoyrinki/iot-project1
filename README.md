@@ -111,9 +111,11 @@ make all BOARD=iotlab-m3 ETHOS_BAUDRATE=500000
 In FIT/Iotlab:
 Set up SSH keys by following instructions: [FIT/Iotlab](https://iot-lab.github.io/docs/getting-started/ssh-access/)
 
-Create a new experiment with two nodes with M3 components with a chosen site, for example Grenoble. 
+In the iot lab website, create a new experiment with two nodes with M3 components with a chosen site, for example Grenoble.
 
-Choose one of the nodes to be the border router and flash the gnrc_border_router.elf file to it. Flash main firmware to the other node. (.elf file)
+Create the experiment.
+
+Edit the running experiment, choose one of the nodes to be the border router and upload the gnrc_border_router.elf file to it. Upload the main firmware to the other node. 
 
 Open two terminals and connect them via SSH to FIT/Iotlab. 
 ```
