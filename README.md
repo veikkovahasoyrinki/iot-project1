@@ -16,6 +16,8 @@ Set-up is free, however you will need to enter your card information to be able 
 
 Enter your card credentials to gain access to the 300 dollars in free credits.
 
+Open the side bar -> Compute engine -> VM instances -> Enable. Wait the Compute engine API to load.
+
 Open the side bar and go to VPC network -> VPC networks -> Create new VPC network
 
 Name your network, in the Subnet sections select custom creation mode to custom 
@@ -30,13 +32,35 @@ Leave the rest as default.
 
 Press done in the subnet sections
 
+Leave the firewall settings as default and press Create.
+
+Press the name of the created VPC network and press edit.
+
+Go to firewalls section. You need to create ingress and egress rules to allow IPv6 traffic.
+
+Add firewall rule. Select an name and select your network. Select direction. Action on match: Allow
+
+Targets: All instances in the network
+
+Source filter: IPv6 ranges
+
+Protocols and ports: Allow all. Leave the rest as default.
 
 
 
 
-Open the side bar -> Compute engine -> VM instances -> Enable 
+Open the side bar -> Compute engine -> VM instances -> Create new instance. 
 
-Wait the Compute engine API to load, and press Create new instance. Select appropriate Region and Zone.  In the Firewall section, allow HTTP and HTTPS traffic. Leave the rest of the settings as default.
+Select appropriate Region and Zone. Select the same Region as the created VPC network. In the Firewall section, allow HTTP and HTTPS traffic. Leave the rest of the settings as default. 
+
+Go advanced options -> Networking -> Networking interfaces
+
+Select your created VPC network
+
+Change IP stack type to IPv4 and IPv6 dual-stack. Do not change the other settings. Press done.
+
+Press Create.
+
 Wait for the created instance to load.
 
 
