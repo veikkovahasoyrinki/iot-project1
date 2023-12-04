@@ -15,8 +15,14 @@ Sign in with you Google credentials to [Google VM.](https://cloud.google.com/com
 Set-up is free, however you will need to enter your card information to be able to create the VM. 
 
 Enter your card credentials to gain access to the 300 dollars in free credits.
+Open the side bar -> Compute engine -> VM instances -> Enable 
+
+Wait the Compute engine API to load, and press Create new instance. Select appropriate Region and Zone.  In the Firewall section, allow HTTP and HTTPS traffic. Leave the rest of the settings as default.
+Wait for the created instance to load.
+
 
 ![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/61ea1cee-238e-425b-b172-85d1456786b0)
+
 
 Navi
 Create VM Instance with default values and change stack type to Dual-stack(ipv4-ipv6) and add firewall rules: 
