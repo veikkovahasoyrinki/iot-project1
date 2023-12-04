@@ -32,7 +32,7 @@ Leave the rest as default.
 
 Press done in the subnet sections
 
-Leave the firewall settings as default and press Create.
+In the firewall section, select all firewall settings to include with the VPC network from IPV4 and IPV6 tabs.
 
 Press the name of the created VPC network.
 
