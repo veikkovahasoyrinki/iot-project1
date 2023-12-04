@@ -9,8 +9,11 @@ Juhana Moberg Y58151762, Veikko Vähäsöyrinki Y58172127, Eemil Kulmala 2308644
 First, you will need to set up the could:
 ## CLOUD: 
 The could is a python UDP server running in Google cloud computing virtual machine instance.
+
 Sign in with you Google credentials to [Google VM.](https://cloud.google.com/compute?hl=en) 
+
 Set-up is free, however you will need to enter your card information to be able to create the VM. 
+
 Enter your card credentials to gain access to the 300 dollars in free credits.
 
 Navi
