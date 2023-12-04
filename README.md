@@ -55,6 +55,8 @@ Now your VPC network details -> Firewalls should look like something like this:
 
 Open the side bar -> Compute engine -> VM instances -> Create new instance. 
 
+![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/61ea1cee-238e-425b-b172-85d1456786b0)
+
 Select appropriate Region and Zone. Select the same Region as the created VPC network. In the Firewall section, allow HTTP and HTTPS traffic. Leave the rest of the settings as default. 
 
 Go advanced options -> Networking -> Networking interfaces
@@ -66,12 +68,6 @@ Change IP stack type to IPv4 and IPv6 dual-stack. Do not change the other settin
 Press Create.
 
 Wait for the created instance to load.
-
-
-![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/61ea1cee-238e-425b-b172-85d1456786b0)
-
-Press the name of the instance, 
-Create VM Instance with default values and change stack type to Dual-stack(ipv4-ipv6) and add firewall rules: 
 
 ![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/99580b35-61c9-48b4-87e2-821428085c84)
 
