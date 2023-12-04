@@ -81,11 +81,15 @@ Save inet6 address from second interface, that is needed in next phase. Select a
 
 
 We followed example: [UDP server example](https://pythontic.com/modules/socket/udp-client-server-example) 
-
-Copy udp server python code to file and run (you need to add your own ip and port): 
+Create a file:
 ```
 touch udp-server.py
 nano udp-server.py
+```
+Copy-paste the code from our git repo udp_server.py file to the nano text editor. Change the IP address and port accordingly.
+
+Next, start the server.
+```
 python3 udp-server.py
 ```
 
