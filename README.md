@@ -27,6 +27,9 @@ Wait for the created instance to load.
 Navi
 Create VM Instance with default values and change stack type to Dual-stack(ipv4-ipv6) and add firewall rules: 
 
+![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/99580b35-61c9-48b4-87e2-821428085c84)
+
+
 Open a ssh terminal from cloud console to the VM instance and run: 
 ``` ip a ```
 ![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/8d3a4404-e79f-4586-bf65-6e15da82959d)
