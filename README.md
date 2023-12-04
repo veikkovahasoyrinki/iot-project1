@@ -34,7 +34,7 @@ Press done in the subnet sections
 
 Leave the firewall settings as default and press Create.
 
-Press the name of the created VPC network and press edit.
+Press the name of the created VPC network.
 
 Go to firewalls section. You need to create ingress and egress rules to allow IPv6 traffic.
 
@@ -53,7 +53,6 @@ Create rules for ingress and engress traffic.
 Now your VPC network details -> Firewalls should look like something like this:
 ![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/087b3532-d86b-4e10-a5d0-3e3fe399dfbb)
 
-
 Open the side bar -> Compute engine -> VM instances -> Create new instance. 
 
 Select appropriate Region and Zone. Select the same Region as the created VPC network. In the Firewall section, allow HTTP and HTTPS traffic. Leave the rest of the settings as default. 
@@ -67,7 +66,6 @@ Change IP stack type to IPv4 and IPv6 dual-stack. Do not change the other settin
 Press Create.
 
 Wait for the created instance to load.
-
 
 
 ![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/61ea1cee-238e-425b-b172-85d1456786b0)
