@@ -109,7 +109,7 @@ make all BOARD=iotlab-m3 ETHOS_BAUDRATE=500000
 ```
 
 In FIT/Iotlab:
-Set up SSH keys in [FIT/Iotlab](https://iot-lab.github.io/docs/getting-started/ssh-access/)
+Set up SSH keys by following instructions: [FIT/Iotlab](https://iot-lab.github.io/docs/getting-started/ssh-access/)
 
 Create a new experiment with two nodes with M3 components with a chosen site, for example Grenoble. 
 
