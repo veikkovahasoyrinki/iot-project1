@@ -16,6 +16,8 @@ Set-up is free, however you will need to enter your card information to be able 
 
 Enter your card credentials to gain access to the 300 dollars in free credits.
 
+![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/61ea1cee-238e-425b-b172-85d1456786b0)
+
 Navi
 Create VM Instance with default values and change stack type to Dual-stack(ipv4-ipv6) and add firewall rules: 
 
