@@ -80,21 +80,26 @@ Open a ssh terminal from cloud console to the VM instance and run:
 Save inet6 address from second interface, that is needed in next phase. Select a port f.ex 8683 (we used that) 
 
 
-We followed example: [UDP server example](https://pythontic.com/modules/socket/udp-client-server-example) 
-Create a file:
+Clone this git repo from the terminal
 ```
-touch udp-server.py
+git clone https://github.com/veikkovahasoyrinki/iot-project1
+```
+Navigate to the repo and Change the IP address and port accordingly in the udp-server.py file with nano.
+```
 nano udp-server.py
 ```
-Copy-paste the code from our git repo udp_server.py file to the nano text editor. Change the IP address and port accordingly.
+Hit CTRL-X and Y to save and exit.
 
 Next, start the server.
 ```
 python3 udp-server.py
 ```
 
-You can test connectivity to the cloud server by running test_server_connection.py with python. Change your address and port to that file.
+Next, clone the git repo to your local machine, navigate to the repo folder and test connectivity to the cloud server by running test_server_connection.py with. Modify the server's ip and port before running.
 
+```
+python3 test_server_connection.py
+```
 ## RIOT and FIT/Iotlab
 
 
@@ -109,27 +114,32 @@ make all BOARD=iotlab-m3 ETHOS_BAUDRATE=500000
 ```
 
 In FIT/Iotlab:
+Navigate to the [FIT iotlab website](https://www.iot-lab.info/). Create an account by pressing "Access the testbed" -> "Register for an account".
 Set up SSH keys by following instructions: [FIT/Iotlab](https://iot-lab.github.io/docs/getting-started/ssh-access/)
 
-In the iot lab website, create a new experiment with two nodes with M3 components with a chosen site, for example Grenoble.
+Next, log in to the website and Press "New experiment".
 
-Create the experiment.
+Use the default settings, press "Nodes" and "Node properties". Select m3 from architecture drop-down menu, Grenoble from "Site" and 2 from "Qty". Press add to experiment.
 
-Edit the running experiment, choose one of the nodes to be the border router and upload the gnrc_border_router.elf file to it. Upload the main firmware to the other node. 
+Press Submit experiment. Wait for your experiment to be in "running" state. Press the name of the id to access the experiment. 
+![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/71126486/f9edfa81-8bae-467c-8665-4c65ed912c50)
 
-Open two terminals and connect them via SSH to FIT/Iotlab. 
+Choose one of the nodes to be the border router and press the "upload firmware" button in above screenshot. Click browse and select gnrc_border_router.elf file to it. Click flash.
+Repeat the same steps for the other device, but select the "main" program .elf file instead.
+
+Open two terminals from your local machine and connect them both via SSH to FIT/Iotlab. 
 ```
 ssh <username>@<site>.iot-lab.info
 ```
 
-In the other SSH terminal:
+In one of the SSH terminals:
 
 ```
 ip addr show | grep tap
 ```
 
-Take tap that is free.
-On below command fill your border routers id, free tap and ipv6 prefix of your site. (Grenoble ipv6 prefix : 2001:660:5307:3100)
+Take tap that is free. E.g. if the above command prints tap1 interface, select tap2.
+Run the below command, but fill your border routers id, free tap and ipv6 prefix of your site. (Grenoble ipv6 prefix : 2001:660:5307:3100)
 
 ```
 sudo ethos_uhcpd.py m3-<id> tap<num> <ipv6_prefix>::/64
