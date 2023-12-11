@@ -77,10 +77,9 @@ Open a ssh terminal from cloud console to the VM instance and run:
 ![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/9b8cbbf1-bcbc-4647-a451-f9c80a8eea75)
 
 
-Save inet6 address from second interface, that is needed in next phase. Select a port f.ex 8683 (we used that) 
+Save inet6 address from the second interface, shown in the picture, it has the scope global tags. This ip is needed in next phase. You also have to select a port, we recommend 8683. Just note down the port and ip.
 
-
-Clone this git repo from the terminal
+Next, clone this git repo in the terminal
 ```
 git clone https://github.com/veikkovahasoyrinki/iot-project1
 ```
@@ -90,7 +89,7 @@ nano udp-server.py
 ```
 Hit CTRL-X and Y to save and exit.
 
-Next, start the server.
+Next, start the server. The server prints incoming messages, so keep visit this window when recieving. Minimize the window.
 ```
 python3 udp-server.py
 ```
@@ -100,6 +99,7 @@ Next, clone the git repo to your local machine, navigate to the repo folder and 
 ```
 python3 test_server_connection.py
 ```
+You should see "Test OK". If failing, review the above steps carefully so that you have the VM set up correctly and IP/port is correctly selected.
 ## RIOT and FIT/Iotlab
 
 
