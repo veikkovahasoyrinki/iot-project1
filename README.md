@@ -125,12 +125,18 @@ Press Submit experiment. Wait for your experiment to be in "running" state. Pres
 ![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/71126486/f9edfa81-8bae-467c-8665-4c65ed912c50)
 
 Choose one of the nodes to be the border router and press the "upload firmware" button in above screenshot. Click browse and select gnrc_border_router.elf file to it. Click flash.
-Repeat the same steps for the other device, but select the "main" program .elf file instead.
+Repeat the same steps for the other device, but select the "main" program .elf file instead. Now you have 2 boards, other one is acting as a border router and other one is acting as a iot device collecting data and sending it towards the cloud. The border router is your gateway to the internet. The "main" board is connected to the border router by being in the same network automatically.
 
-Open two terminals from your local machine and connect them both via SSH to FIT/Iotlab. 
+Open one terminal from your local machine and open a SSH connection by 
 ```
-ssh <username>@<site>.iot-lab.info
+ssh <username>@grenoble.iot-lab.info
 ```
+Next, authenticate.
+```
+iotlab-auth -u <username>
+```
+
+Open a second terminal window and SSH that to the same site.
 
 In one of the SSH terminals:
 
@@ -139,22 +145,24 @@ ip addr show | grep tap
 ```
 
 Take tap that is free. E.g. if the above command prints tap1 interface, select tap2.
+
+Remember the border router device id:
+![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/8765541b-a2a2-4007-9fe8-c6f682b641ed)
+
+
 Run the below command, but fill your border routers id, free tap and ipv6 prefix of your site. (Grenoble ipv6 prefix : 2001:660:5307:3100)
 
 ```
 sudo ethos_uhcpd.py m3-<id> tap<num> <ipv6_prefix>::/64
 ```
+This terminal window connects to the border router board and becomes busy. You cannot type anything here. The border router is now configured.
 
-Now in the other terminal run: (id can be found from board name in Iotlab experiment)
+Now in the other terminal that has the SSH connection and should be free, run below command and fill the "main" device's id.
 ```
 nc m3-<id> 20000
 ```
-ID:
-![image](https://github.com/veikkovahasoyrinki/iot-project1/assets/151513154/8765541b-a2a2-4007-9fe8-c6f682b641ed)
-
-
-Now run ifconfig and you should see that you have inet6 address with global scope.
-You can test connection by pingin a pulbic Google server:
+Now you are connected to the "main" iot device with this terminal window. In here, run ifconfig and you should see that you have inet6 address with global scope. You will have to type the below commands as the shell is not advanced.
+You can test connection by pingin a public Google server:
 
 ```
 ping 2a00:1450:4007:80f::2003
@@ -166,4 +174,5 @@ Start sending, receiving and collecting data with:
 lsm start
 ```
 
+Switch to the google VM cloud SSH window and see the messages coming in.
 With udp_server.py code collected data is written to data.csv file with timestamp.
